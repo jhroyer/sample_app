@@ -33,7 +33,6 @@ describe UsersController do
     end
   end
 
-
   describe "GET 'new'" do
 
     it "should be successful" do
