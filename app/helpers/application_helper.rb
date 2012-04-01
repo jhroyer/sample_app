@@ -1,8 +1,6 @@
 module ApplicationHelper
 
-def logo    
-	image_tag("logo.png", :alt => "Sample App", :class => "round") 
-end  
+
 
 def title    
 	base_title = "Ruby on Rails Tutorial Sample App"    
@@ -12,4 +10,8 @@ def title
 	   "#{base_title} | #{@title}"    
 	end  
   end
+
+def logo    
+	image_tag("logo.png", :alt => "Sample App", :class => "round") 
+end  
 end
