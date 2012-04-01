@@ -21,7 +21,6 @@ gem 'factory_girl_rails', '1.0'
 
 end
 
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
