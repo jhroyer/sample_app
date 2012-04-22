@@ -15,6 +15,43 @@ describe MicropostsController do
     end
   end
   
+describe "sidebar" do
+
+before(:each) do
+@user = test_sign_in(Factory(:user))
+@var1 = { :content => "Testing"}
+@var2 = { :content => "Sidebar test"}
+end
+	
+it "should have a username" do
+post :create
+response.should have_selector('span', :content => @user.name)
+end
+	
+it "should have a gravatar" do
+post :create
+response.should have_selector('img', :class => "gravatar")
+end	
+
+it "should have a micropost count" do
+post :create
+response.should have_selector('span', :class => "microposts")
+end
+		
+it "should pluralize micropost count" do
+post :create
+response.should have_selector('span', :content => "0 microposts")
+post :create, :micropost => @var1
+post :create
+response.should have_selector('span', :content => "1 micropost")
+post :create, :micropost => @var2
+post :create
+response.should have_selector('span', :content => "2 microposts")
+end
+end
+
+
+
   describe "POST 'create'" do
     
     before(:each) do

@@ -116,6 +116,38 @@ get :show, :id => @user
 response.should have_selector("span.content", :content => mp1.content)
 response.should have_selector("span.content", :content => mp2.content)
 end
+it "should paginate the microposts" do 
+32.times do 
+mp = Factory(:micropost, :user => @user, :content => "fooooo baaaar") 
+end 
+get :show, :id => @user 
+response.should have_selector("div.pagination") 
+response.should have_selector("span.disabled", :content => "Previous") 
+response.should have_selector("a", :href => "/users/1?page=2", 
+:content => "2") 
+response.should have_selector("a", :href => "/users/1?page=2", 
+:content => "Next") 
+end 
+
+ it "should not show delete links for the microposts" do
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+      get :show, :id => @user
+      response.should_not have_selector("a", :content => "delete")
+    end
+
+    describe "for signed-in users" do
+
+      it "should show delete links for the microposts" do
+        test_sign_in(@user)
+        mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+        mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+        get :show, :id => @user
+        response.should have_selector("a", :content => "delete")
+      end
+    end
+
+
   end
 
 
