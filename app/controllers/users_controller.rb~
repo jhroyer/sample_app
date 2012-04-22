@@ -24,7 +24,7 @@ def create
     if @user.save
       sign_in @user
       
-      redirect_to @user, :flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user, :flash => { :success => "Welcome to the Sample App!" }
     else
       @title = "Sign up"
     @user.password = nil   
