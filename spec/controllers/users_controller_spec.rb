@@ -57,6 +57,7 @@ describe UsersController do
       end
     end
     
+
     describe "as an admin user" do
       
       it "should show 'delete' links" do
