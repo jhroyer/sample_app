@@ -1,13 +1,15 @@
-<table class="front" summary="For signed-in users">
+<table class="">
   <tr>
     <td class="main">
-      <h1 class="micropost">What's up?</h1>
-      <%= render 'shared/micropost_form' %>
-      <%= render 'shared/feed' %>
+      <h2 class="micropost">What's up?</h2>
+      <%= render 'pages/micropost_form' %>
+      <%= render 'pages/feed' %>
     </td>
     <td class="sidebar round">
-      <%= render 'shared/user_info' %>
+      <%= render :partial => 'pages/user_info', :locals => { :user_input => current_user } %>
+      <%= render 'pages/stats' %>
     </td>
   </tr>
 </table>
+
 
