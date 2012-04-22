@@ -5,10 +5,7 @@ class UsersController < ApplicationController
   before_filter :admin_user, :only => :destroy
   before_filter :signed_in_user, :only => [:new, :create]
 
-  def show
-   @user = User.find(params[:id])
-   @title = @user.name
-  end
+  
 
   def new
     @user = User.new
@@ -49,8 +46,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @title = @user.name
+   @user = User.find(params[:id])
+@microposts = @user.microposts.paginate(:page => params[:page])
+   @title = @user.name
   end
   
   def destroy
