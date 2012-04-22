@@ -1,7 +1,19 @@
 <% if signed_in? %>
-<%= render 'pages/user_homepage' %>
-<%= render 'pages/user_info' %>
-<%= render 'pages/stats' %>
+  <table class="front" summary="For signed-in users">
+    <tr>
+      <td class="main">
+        <h1 class="micropost">What's up?</h1>
+        <%= render 'shared/micropost_form' %>
+        <%= render 'shared/feed' %>
+      </td>
+      <td class="sidebar round">
+        <%= render 'shared/user_info' %>
+        <%= render 'shared/stats' %>
+      </td>
+    </tr>
+  </table>
+
+
 
 <% else %>
 <%= render 'pages/start_home' %>
